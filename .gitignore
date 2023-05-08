@@ -2,3 +2,6 @@
 .DS_Store
 .netrwhist
 plugin
+
+*.json
+*/*.json
