@@ -1,6 +1,6 @@
 -- utf8
 vim.g.encoding = "UTF-8"
-vim.o.fileencoding = 'utf-8'
+vim.o.fileencoding = "utf-8"
 
 -- j/h/k/l keep 8 lines when moving the cursor
 vim.o.scrolloff = 8
@@ -60,7 +60,7 @@ vim.bo.autoread = true
 vim.wo.wrap = false
 
 -- 光标在行首尾时<Left><Right>可以跳到下一行
-vim.o.whichwrap = '<,>,[,]'
+vim.o.whichwrap = "<,>,[,]"
 
 -- 允许隐藏被修改过的buffer
 vim.o.hidden = true
@@ -99,7 +99,7 @@ vim.o.listchars = "space:·"
 vim.o.wildmenu = true
 
 -- Dont' pass messages to |ins-completin menu|
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. "c"
 
 -- 补全最多显示10行
 vim.o.pumheight = 10

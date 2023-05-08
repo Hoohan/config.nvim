@@ -1,4 +1,3 @@
-
 local status0, mason = pcall(require, "mason")
 if not status0 then
     vim.notify("do not find: mason")
@@ -20,13 +19,13 @@ end
 -- :h mason-default-settings
 -- ~/.local/share/nvim/mason
 mason.setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+        },
     },
-  },
 })
 
 -- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
@@ -35,7 +34,7 @@ mason_config.setup({
     ensure_installed = {
         "lua_ls",
         "clangd",
-    }
+    },
 })
 
 -- 安装列表

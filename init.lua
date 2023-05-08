@@ -20,7 +20,7 @@ require("plugin-config.nvim-treesitter")
 -- tool plugins
 require("plugin-config.telescope")
 
--- -- lsp
+-- lsp
 require("lsp.setup")
 require("lsp.cmp")
 require("lsp.null-ls")
