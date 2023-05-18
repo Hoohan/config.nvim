@@ -1,4 +1,4 @@
-local common = require("lsp.common-config")
+local common = require("lsp.common-lsp-conf")
 local opts = {
   capabilities = common.capabilities,
   flags = common.flags,
