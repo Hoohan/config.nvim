@@ -65,6 +65,10 @@ packer.startup({
         use("lukas-reineke/indent-blankline.nvim")
         -- null-ls
         use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+        -- auto-pair
+        use("windwp/nvim-autopairs")
+        -- comments
+        use("numToStr/Comment.nvim")
     end,
     config = {
         -- 并发数限制
