@@ -4,12 +4,12 @@ vim.g.maplocalleader = " "
 
 -- set local var
 local map = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true}
+local opt = { noremap = true, silent = true }
 
 -- mapping
 
 -- cancel s default function
-map("n","s","",opt)
+map("n", "s", "", opt)
 -- windows 分屏快捷键
 map("n", "sv", ":vsp<CR>", opt)
 map("n", "sh", ":sp<CR>", opt)
@@ -80,7 +80,7 @@ map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = {
   -- 打开文件或文件夹
-  { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
+  { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
   -- 分屏打开文件
   { key = "v", action = "vsplit" },
   { key = "h", action = "split" },
@@ -175,11 +175,11 @@ pluginKeys.cmp = function(cmp)
 
   return {
     -- 出现补全
-    ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+    ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     -- 取消
     ["<A-,>"] = cmp.mapping({
       i = cmp.mapping.abort(),
-      c = cmp.mapping.close()
+      c = cmp.mapping.close(),
     }),
     -- 上一个
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -188,11 +188,11 @@ pluginKeys.cmp = function(cmp)
     -- 确认
     ["<CR>"] = cmp.mapping.confirm({
       select = true,
-      behavior = cmp.ConfirmBehavior.Replace
+      behavior = cmp.ConfirmBehavior.Replace,
     }),
     -- 如果窗口内容太多，可以滚动
-    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -212,7 +212,7 @@ pluginKeys.cmp = function(cmp)
         feedkey("<Plug>(vsnip-jump-prev)", "")
       end
     end, { "i", "s" }),
-   }
+  }
 end
 
 -- 代码注释插件

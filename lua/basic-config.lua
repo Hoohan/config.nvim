@@ -96,12 +96,12 @@ vim.opt.termguicolors = true
 vim.opt.list = true
 -- vim.opt.list = false
 vim.opt.listchars = {
-    --    eol = "⤶",
-    space = "·",
-    trail = "✚",
-    extends = "◀",
-    precedes = "▶",
-    tab = "--",
+  --    eol = "⤶",
+  space = "·",
+  trail = "✚",
+  extends = "◀",
+  precedes = "▶",
+  tab = "--",
 }
 
 -- 补全增强

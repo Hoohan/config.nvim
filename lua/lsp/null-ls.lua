@@ -1,6 +1,6 @@
 local status, null_ls = pcall(require, "null-ls")
 if not status then
-  vim.notify("没有找到 null-ls")
+  vim.notify("Can not find null-ls")
   return
 end
 
@@ -9,10 +9,9 @@ local formatting = null_ls.builtins.formatting
 null_ls.setup({
   debug = false,
   sources = {
-    -- Formatting ---------------------
-    --  brew install shfmt
+    -- shell
     formatting.shfmt,
-    -- StyLua
+    -- Lua
     formatting.stylua,
     -- frontend
     formatting.prettier.with({ -- 只比默认配置少了 markdown
@@ -32,15 +31,9 @@ null_ls.setup({
       },
       prefer_local = "node_modules/.bin",
     }),
-    -- StyLua
+    -- clang
     formatting.clang_format,
-    -- formatting.fixjson,
-    -- formatting.black.with({ extra_args = { "--fast" } }),
+    -- cmake
+    formatting.cmake_format,
   },
-  -- 保存自动格式化
-  --  on_attach = function(client)
-  --    if client.resolved_capabilities.document_formatting then
-  --      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-  --    end
-  --  end,
 })
