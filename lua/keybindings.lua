@@ -230,4 +230,9 @@ pluginKeys.comment = {
   },
 }
 
+-- neogen
+map("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opt)
+map("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opt)
+map("n", "<Leader>nd", ":lua require('neogen').generate({ type = 'file' })<CR>", opt)
+
 return pluginKeys

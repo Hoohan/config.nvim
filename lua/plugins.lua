@@ -14,7 +14,7 @@ local packer_bootstrap = ensure_packer()
 local packer = require("packer")
 packer.startup({
   function(use)
-    -- Packer 可以管理自己本身
+    -- Packer can manage itself
     use("wbthomason/packer.nvim")
     --------------------- colorschemes --------------------
     -- tokyonight
@@ -47,7 +47,7 @@ packer.startup({
 
     -- 补全引擎
     use("hrsh7th/nvim-cmp")
-    -- snippet 引擎
+    -- snippet
     use("hrsh7th/vim-vsnip")
     -- 补全源
     use("hrsh7th/cmp-vsnip")
@@ -69,6 +69,13 @@ packer.startup({
     use("windwp/nvim-autopairs")
     -- comments
     use("numToStr/Comment.nvim")
+    -- doxygen
+    use({
+      "danymat/neogen",
+      requires = "nvim-treesitter/nvim-treesitter",
+      -- Uncomment next line if you want to follow only stable versions
+      tag = "*",
+    })
   end,
   config = {
     -- 并发数限制

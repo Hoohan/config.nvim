@@ -21,6 +21,7 @@ require("plugin-config.nvim-treesitter")
 require("plugin-config.telescope")
 require("plugin-config.nvim-autopairs")
 require("plugin-config.comment-nvim")
+require("plugin-config.neogen")
 
 -- lsp
 require("lsp.setup")
