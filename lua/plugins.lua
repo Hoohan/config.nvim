@@ -76,6 +76,8 @@ packer.startup({
       -- Uncomment next line if you want to follow only stable versions
       tag = "*",
     })
+    -- notify
+    use({ "folke/noice.nvim",event = "VeryLazy", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } })
   end,
   config = {
     -- 并发数限制
