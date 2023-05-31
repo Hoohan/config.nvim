@@ -35,3 +35,15 @@ bufferline.setup({
     end,
   },
 })
+
+--- key mapping ---
+local key_map = vim.api.nvim_set_keymap
+local key_opt = { noremap = true, silent = true }
+-- switch tab
+key_map("n", "<C-h>", ":BufferLineCyclePrev<CR>", key_opt)
+key_map("n", "<C-l>", ":BufferLineCycleNext<CR>", key_opt)
+-- close
+key_map("n", "<C-w>", ":Bdelete!<CR>", key_opt)
+key_map("n", "<leader>bl", ":BufferLineCloseRight<CR>", key_opt)
+key_map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", key_opt)
+key_map("n", "<leader>bc", ":BufferLinePickClose<CR>", key_opt)

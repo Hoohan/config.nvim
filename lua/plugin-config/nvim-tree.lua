@@ -4,6 +4,12 @@ if not status then
   return
 end
 
+--- key mapping ---
+local key_map = vim.api.nvim_set_keymap
+local key_opt = { noremap = true, silent = true }
+-- Alt+m to open/close tree
+key_map("n", "<A-m>", ":NvimTreeToggle<CR>", key_opt)
+
 --
 -- This function has been generated from your
 --   view.mappings.list
@@ -21,6 +27,7 @@ end
 -- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
 --
 
+-- Set on_attach = on_attach in configuration.
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -105,17 +112,13 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "s", api.node.run.system, opts("Run System"))
 end
 
--- Set on_attach = on_attach in configuration.
-nvim_tree.setup({
-  on_attch = on_attch,
-})
-
 -- 列表操作快捷键
 -- local list_keys = require('keybindings').nvimTreeList
 nvim_tree.setup({
-  -- 不显示 git 状态图标
+  on_attach = on_attach,
+  -- 显示 git 状态图标
   git = {
-    enable = false,
+    enable = true,
   },
   -- project plugin 需要这样设置
   update_cwd = true,
@@ -136,10 +139,10 @@ nvim_tree.setup({
     -- 隐藏根目录
     hide_root_folder = false,
     -- 自定义列表中快捷键
-    mappings = {
-      custom_only = false,
-      list = list_keys,
-    },
+    -- mappings = {
+    --   custom_only = false,
+    --   list = list_keys,
+    -- },
     -- 不显示行数
     number = false,
     relativenumber = false,
@@ -160,7 +163,8 @@ nvim_tree.setup({
     cmd = "open", -- mac 直接设置为 open
   },
 })
--- 自动关闭
+
+-- auto close
 vim.cmd([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]])

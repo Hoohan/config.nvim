@@ -6,9 +6,9 @@ vim.o.fileencoding = "utf-8"
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 
--- using the relative line number
+-- display line number
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 
 -- highlight the cursor line
 vim.wo.cursorline = true

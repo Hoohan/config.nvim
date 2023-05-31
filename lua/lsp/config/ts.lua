@@ -1,4 +1,4 @@
-local common = require("lsp.common-config")
+local common = require("lsp.config.default.config")
 local keybindings = require("keybindings")
 local ts_utils = require("nvim-lsp-ts-utils")
 local opts = {

@@ -19,19 +19,35 @@ packer.startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
-    --------------------- colorschemes --------------------
-    -- tokyonight
+    -- colorscheme: tokyonight
     use("folke/tokyonight.nvim")
     --------------------- plugins -------------------------
     -- nvim-tree
-    use({ "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" })
+    use({
+      "nvim-tree/nvim-tree.lua",
+      requires = "nvim-tree/nvim-web-devicons",
+    })
     -- bufferline
-    use({ "akinsho/bufferline.nvim", requires = { "nvim-tree/nvim-web-devicons", "moll/vim-bbye" } })
+    use({
+      "akinsho/bufferline.nvim",
+      requires = {
+        "nvim-tree/nvim-web-devicons",
+        "moll/vim-bbye",
+      },
+    })
     -- lualine
-    use({ "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+    use({
+      "nvim-lualine/lualine.nvim",
+      requires = {
+        "nvim-tree/nvim-web-devicons",
+      },
+    })
     use("arkav/lualine-lsp-progress")
     -- telescope
-    use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
+    use({
+      "nvim-telescope/telescope.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    })
     -- dashboard-nvim
     use("glepnir/dashboard-nvim")
     -- treesitter
@@ -42,32 +58,10 @@ packer.startup({
         ts_update()
       end,
     })
-    --------------------- LSP --------------------
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
-    -- Lspconfig
-    use({ "neovim/nvim-lspconfig" })
-
-    -- 补全引擎
-    use("hrsh7th/nvim-cmp")
-    -- snippet
-    use("hrsh7th/vim-vsnip")
-    -- 补全源
-    use("hrsh7th/cmp-vsnip")
-    use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
-    use("hrsh7th/cmp-buffer")   -- { name = 'buffer' },
-    use("hrsh7th/cmp-path")     -- { name = 'path' }
-    use("hrsh7th/cmp-cmdline")  -- { name = 'cmdline' }
-
-    -- 常见编程语言代码段
-    use("rafamadriz/friendly-snippets")
-
     -- ui
     use("onsails/lspkind-nvim")
     -- indent-blankline
     use("lukas-reineke/indent-blankline.nvim")
-    -- null-ls
-    use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
     -- auto-pair
     use("windwp/nvim-autopairs")
     -- comments
@@ -80,7 +74,35 @@ packer.startup({
       tag = "*",
     })
     -- notify
-    use({ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } })
+    use({
+      "folke/noice.nvim",
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+    })
+    --------------------- LSP --------------------
+    use({ "williamboman/mason.nvim" })
+    use({ "williamboman/mason-lspconfig.nvim" })
+    -- Lspconfig
+    use({ "neovim/nvim-lspconfig" })
+    -- 补全引擎
+    use("hrsh7th/nvim-cmp")
+    -- snippet
+    use("hrsh7th/vim-vsnip")
+    -- cmp sources
+    use("hrsh7th/cmp-vsnip")
+    use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
+    use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
+    use("hrsh7th/cmp-path") -- { name = 'path' }
+    use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
+    -- snippets
+    use("rafamadriz/friendly-snippets")
+    -- null-ls
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = "nvim-lua/plenary.nvim",
+    })
   end,
   config = {
     -- 并发数限制

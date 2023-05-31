@@ -2,6 +2,8 @@
 -- This is the key mapping file of nvim itself.
 -- The mapping of plugins will be defined in their lua scripts.
 -- LSP Keymap: lsp/config/default/config.lua
+-- Nvim-cmp: lsp/cmp.lua
+-- Plugins Keymap: plugin-config/[plugin-name].lua
 ----------------------
 
 -- set leader key
@@ -12,23 +14,21 @@ vim.g.maplocalleader = " "
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
--- mapping
-
--- cancel s default function
+--- Window Control
+-- cancel default function of s
 map("n", "s", "", opt)
 -- windows 分屏快捷键
 map("n", "sv", ":vsp<CR>", opt)
 map("n", "sh", ":sp<CR>", opt)
--- 关闭当前
+-- Close now buffer
 map("n", "sc", "<C-w>c", opt)
--- 关闭其他
+-- close Other buffer
 map("n", "so", "<C-w>o", opt)
--- Alt + hjkl  窗口之间跳转
+-- Alt + hjkl - jump between windows
 map("n", "<A-h>", "<C-w>h", opt)
 map("n", "<A-j>", "<C-w>j", opt)
 map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
-
 -- 左右比例控制
 map("n", "<C-Left>", ":vertical resize -2<CR>", opt)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opt)
@@ -42,7 +42,7 @@ map("n", "<C-Up>", ":resize -2<CR>", opt)
 -- 等比例
 map("n", "s=", "<C-w>=", opt)
 
--- Terminal相关
+--- Terminal Control
 map("n", "<leader>t", ":sp | terminal<CR>", opt)
 map("n", "<leader>vt", ":vsp | terminal<CR>", opt)
 map("t", "<Esc>", "<C-\\><C-n>", opt)
@@ -51,7 +51,7 @@ map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
--- visual模式下缩进代码
+-- visual mode
 map("v", "<", "<gv", opt)
 map("v", ">", ">gv", opt)
 -- 上下移动选中文本
@@ -76,141 +76,3 @@ map("v", "p", '"_dP', opt)
 -- insert 模式下，跳到行首行尾
 map("i", "<C-h>", "<ESC>I", opt)
 map("i", "<C-l>", "<ESC>A", opt)
-
--- 插件快捷键
-local pluginKeys = {}
-
--- nvim-tree
--- alt + m 键打开关闭tree
-map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
--- 列表快捷键
-pluginKeys.nvimTreeList = {
-  -- 打开文件或文件夹
-  { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
-  -- 分屏打开文件
-  { key = "v", action = "vsplit" },
-  { key = "h", action = "split" },
-  -- 显示隐藏文件
-  { key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
-  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
-  -- 文件操作
-  { key = "<F5>", action = "refresh" },
-  { key = "a", action = "create" },
-  { key = "d", action = "remove" },
-  { key = "r", action = "rename" },
-  { key = "x", action = "cut" },
-  { key = "c", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "s", action = "system_open" },
-}
-
--- bufferline
--- 左右Tab切换
-map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
--- 关闭
---"moll/vim-bbye"
-map("n", "<C-w>", ":Bdelete!<CR>", opt)
-map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
-map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
-map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
-
--- Telescope
--- 查找文件
-map("n", "<C-p>", ":Telescope find_files<CR>", opt)
--- 全局搜索
-map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
--- Telescope 列表中 插入模式快捷键
-pluginKeys.telescopeList = {
-  i = {
-    -- 上下移动
-    ["<C-j>"] = "move_selection_next",
-    ["<C-k>"] = "move_selection_previous",
-    ["<Down>"] = "move_selection_next",
-    ["<Up>"] = "move_selection_previous",
-    -- 历史记录
-    ["<C-n>"] = "cycle_history_next",
-    ["<C-p>"] = "cycle_history_prev",
-    -- 关闭窗口
-    ["<C-c>"] = "close",
-    -- 预览窗口上下滚动
-    ["<C-u>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down",
-  },
-}
-
--- nvim-cmp 自动补全
-pluginKeys.cmp = function(cmp)
-  local has_words_before = function()
-    unpack = unpack or table.unpack
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  end
-
-  local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-  end
-
-  return {
-    -- 出现补全
-    ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    -- 取消
-    ["<A-,>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    -- 上一个
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    -- 下一个
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    -- 确认
-    ["<CR>"] = cmp.mapping.confirm({
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace,
-    }),
-    -- 如果窗口内容太多，可以滚动
-    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
-      end
-    end, { "i", "s" }),
-  }
-end
-
--- 代码注释插件
--- see ./lua/plugin-config/comment.lua
-pluginKeys.comment = {
-  -- Normal 模式快捷键
-  toggler = {
-    line = "gcc", -- 行注释
-    block = "gbc", -- 块注释
-  },
-  -- Visual 模式
-  opleader = {
-    line = "gc",
-    bock = "gb",
-  },
-}
-
--- neogen
-map("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opt)
-map("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opt)
-map("n", "<Leader>nd", ":lua require('neogen').generate({ type = 'file' })<CR>", opt)
-
-return pluginKeys

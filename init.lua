@@ -1,13 +1,13 @@
 -- basic config
 require("basic-config")
 
--- Plugin Manager: Packer
+-- plugins and its manager: Packer
 require("plugins")
 
 -- keybinding
 require("keybindings")
 
--- Color Scheme
+-- color Scheme
 require("colorscheme")
 
 -- ui plugins
