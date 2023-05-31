@@ -16,13 +16,13 @@ require("plugin-config.bufferline")
 require("plugin-config.lualine")
 require("plugin-config.indent-blankline")
 require("plugin-config.nvim-treesitter")
+require("plugin-config.noice")
 
 -- tool plugins
 require("plugin-config.telescope")
 require("plugin-config.nvim-autopairs")
 require("plugin-config.comment-nvim")
 require("plugin-config.neogen")
-require("plugin-config.noice")
 
 -- lsp
 require("lsp.setup")

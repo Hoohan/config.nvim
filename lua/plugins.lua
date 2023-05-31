@@ -10,6 +10,9 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+if packer_bootstrap then
+  vim.notify("packer booting")
+end
 
 local packer = require("packer")
 packer.startup({
@@ -52,9 +55,9 @@ packer.startup({
     -- 补全源
     use("hrsh7th/cmp-vsnip")
     use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
-    use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
-    use("hrsh7th/cmp-path") -- { name = 'path' }
-    use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
+    use("hrsh7th/cmp-buffer")   -- { name = 'buffer' },
+    use("hrsh7th/cmp-path")     -- { name = 'path' }
+    use("hrsh7th/cmp-cmdline")  -- { name = 'cmdline' }
 
     -- 常见编程语言代码段
     use("rafamadriz/friendly-snippets")
@@ -77,7 +80,7 @@ packer.startup({
       tag = "*",
     })
     -- notify
-    use({ "folke/noice.nvim",event = "VeryLazy", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } })
+    use({ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } })
   end,
   config = {
     -- 并发数限制
