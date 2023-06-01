@@ -23,6 +23,10 @@ notify.setup({
   stages = "fade",
   timeout = 5000,
   top_down = true,
+  -- change border style
+  on_open = function (win)
+    vim.api.nvim_win_set_config(win, { border = "single" })
+  end,
 })
 
 local statusNoice, noice = pcall(require, "noice")
