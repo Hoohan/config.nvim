@@ -10,7 +10,8 @@ lualine.setup({
     theme = "tokyonight",
     component_separators = { left = "|", right = "|" },
     -- https://github.com/ryanoasis/powerline-extra-symbols
-    section_separators = { left = " ", right = "" },
+    --section_separators = { left = " ", right = "" },
+    section_separators = { left = "▌", right = "▐" },
   },
   extensions = { "nvim-tree", "toggleterm" },
   sections = {
@@ -26,14 +27,9 @@ lualine.setup({
       {
         "fileformat",
         symbols = {
-          unix = "", -- e712
-          dos = "", -- e70f
-          mac = "", -- e711
-        },
-        symbols = {
-          unix = "LF",
-          dos = "CRLF",
-          mac = "CR",
+          unix = " LF", -- e712
+          dos = " CRLF", -- e70f
+          mac = " CR", -- e711
         },
       },
       "encoding",
