@@ -1,2 +1,9 @@
-# Hoohan.config.nvim
-The nvim config files using by Hoohan.
+# hoohan/config.nvim
+
+The hand-made nvim config files.
+
+## Usage
+
+```bash
+git clone https://github.com/Hoohan/config.nvim ~/.config/nvim
+```
