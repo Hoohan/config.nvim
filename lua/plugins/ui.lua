@@ -1,5 +1,8 @@
 vim.opt.termguicolors = true
 
+local dashboard_header = "Coding Changes the World."
+dashboard_header = vim.split(string.rep("\n", 8) .. dashboard_header .. "\n\n", "\n")
+
 return {
 
     {
@@ -77,5 +80,28 @@ return {
                 extensions = {}
             }
         end,
+    },
+
+    {
+        'nvimdev/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+                theme = 'doom',
+                config = {
+                    header = dashboard_header,
+                    -- TODO: add more options
+                    center = {
+                        { action = "ene | startinsert", desc = " New File", icon = " ", key = "n" }
+                    },
+                    footer = function()
+                        local stats = require("lazy").stats()
+                        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                        return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+                    end,
+                }
+            }
+        end,
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     }
 }
